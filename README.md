@@ -1,21 +1,7 @@
-# RenewexRouting
+# RenewEx Edge Router
 
-**TODO: Add description**
+![RenewEx Edge Router](./guides/images/logo.png)
 
-## Installation
+Library for calculating dynamic edge positions in [Renew](http://www.renew.de) drawings.  
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `renewex_routing` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:renewex_routing, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/renewex_routing>.
-
+[![Hex.pm](https://img.shields.io/hexpm/v/renewex_routing.svg)](https://hex.pm/packages/renewex_routing) [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/renewex_routing/)
