@@ -1,4 +1,17 @@
 defmodule RenewexRouting.Position do
+  def unify_coord(:x, obj) do
+    %{
+      value: obj.x_value,
+      unit: obj.x_unit,
+      offset: %{
+        operation: obj.x_offset_operation,
+        value_static: obj.x_offset_value_static,
+        dynamic_value: obj.x_offset_dynamic_value,
+        dynamic_unit: obj.x_offset_dynamic_unit
+      }
+    }
+  end
+
   def unify_coord(:y, obj) do
     %{
       value: obj.y_value,
