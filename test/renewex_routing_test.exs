@@ -30,6 +30,19 @@ defmodule RenewexRoutingTest do
     height: 50
   }
 
+  @box_e %{
+    position_x: 0,
+    position_y: 0,
+    width: 100,
+    height: 50
+  }
+  @box_f %{
+    position_x: 400,
+    position_y: 25,
+    width: 100,
+    height: 50
+  }
+
   test "no bonding" do
     assert %Adjusment{
              update: %{},
@@ -131,6 +144,24 @@ defmodule RenewexRoutingTest do
              RenewexRouting.align_edge_to_socket(
                %Target{box: @box_c, socket: socket, stencil: schema.stencil},
                %Target{box: @box_d, socket: socket, stencil: schema.stencil},
+               []
+             )
+  end
+
+  test "stencil both side bonding 3x3" do
+    schema = RenewexRouting.schema_by_name("simple-rect")
+    socket_a = RenewexRouting.socket_by_name("simple-rect", "center-socket")
+    socket_b = RenewexRouting.socket_by_name("3x3 sockets", "top")
+
+    assert :rect = schema.stencil
+
+    assert %Adjusment{
+             keep: %{},
+             update: %{target_x: 450, target_y: 25, source_x: 100, source_y: 25}
+           } ==
+             RenewexRouting.align_edge_to_socket(
+               %Target{box: @box_e, socket: socket_a, stencil: schema.stencil},
+               %Target{box: @box_f, socket: socket_b, stencil: schema.stencil},
                []
              )
   end

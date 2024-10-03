@@ -71,7 +71,7 @@ defmodule RenewexRouting.EdgeRouter do
       align_to_socket(source_box, source_socket)
 
     relevant_waypoint_source =
-      align_to_socket(target_box, source_socket)
+      align_to_socket(target_box, target_socket)
 
     %{position_x: source_x, position_y: source_y} =
       align_to_socket(source_box, source_socket, relevant_waypoint_source, source_stencil)
