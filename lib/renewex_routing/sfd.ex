@@ -27,10 +27,22 @@ defmodule RenewexRouting.Sdf do
     rel_x = x - box_center_x
     rel_y = y - box_center_y
 
-    k1 = max(hypot(rel_x / rx, rel_y / ry), @epsilon)
-    k2 = max(hypot(rel_x / (rx * rx), rel_y / (ry * ry)), @epsilon)
+    cond do
+      rx == 0.0 and ry == 0.0 ->
+        hypot(rel_x, rel_y)
 
-    k1 * (k1 - 1.0) / k2
+      rx == 0.0 ->
+        abs(abs(rel_y) - ry)
+
+      ry == 0.0 ->
+        abs(abs(rel_x) - rx)
+
+      true ->
+        k1 = max(hypot(rel_x / rx, rel_y / ry), @epsilon)
+        k2 = max(hypot(rel_x / (rx * rx), rel_y / (ry * ry)), @epsilon)
+
+        k1 * (k1 - 1.0) / k2
+    end
   end
 
   def distance(_d, _box, {_x, _y}) do

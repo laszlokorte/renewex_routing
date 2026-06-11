@@ -165,4 +165,74 @@ defmodule RenewexRoutingTest do
                []
              )
   end
+
+  test "ellipse with 0 height to ellipse with 0 width" do
+    schema = RenewexRouting.schema_by_name("simple-ellipse")
+    socket = RenewexRouting.socket_by_name("simple-ellipse", "center-socket")
+
+    assert :ellipse = schema.stencil
+
+    assert %Adjusment{
+             keep: %{},
+             update: %{target_x: 200, target_y: 150, source_x: 150, source_y: 200}
+           } ==
+             RenewexRouting.align_edge_to_socket(
+               %Target{
+                 box: %{
+                   position_x: 100,
+                   position_y: 200,
+                   width: 100,
+                   height: 0
+                 },
+                 socket: socket,
+                 stencil: schema.stencil
+               },
+               %Target{
+                 box: %{
+                   position_x: 200,
+                   position_y: 100,
+                   width: 0,
+                   height: 100
+                 },
+                 socket: socket,
+                 stencil: schema.stencil
+               },
+               []
+             )
+  end
+
+  test "ellipse with 0 size to ellipse with 0 size" do
+    schema = RenewexRouting.schema_by_name("simple-ellipse")
+    socket = RenewexRouting.socket_by_name("simple-ellipse", "center-socket")
+
+    assert :ellipse = schema.stencil
+
+    assert %Adjusment{
+             keep: %{},
+             update: %{target_x: 100, target_y: 100, source_x: 200, source_y: 200}
+           } ==
+             RenewexRouting.align_edge_to_socket(
+               %Target{
+                 box: %{
+                   position_x: 200,
+                   position_y: 200,
+                   width: 0,
+                   height: 0
+                 },
+                 socket: socket,
+                 stencil: schema.stencil
+               },
+               %Target{
+                 box: %{
+                   position_x: 100,
+                   position_y: 100,
+                   width: 0,
+                   height: 0
+                 },
+                 socket: socket,
+                 stencil: schema.stencil
+               },
+               []
+             )
+  end
 end
